@@ -1,0 +1,19 @@
+// Custom.scss
+$brand-primary: #62B20C;
+$brand-gray: rgba(0, 0, 0, 0.12);
+$bg-gray: #F5F6F8;
+$theme-colors: ( "primary": $brand-primary, "danger": #ff4136);
+// Include all of Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+// Global layout
+.App {
+    height: 100vh;
+}
+
+.Main {
+    padding: 32px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

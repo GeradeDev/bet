@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SessionService } from './session.service';
-import { SessionUser } from '../shared/common.model';
+import { SessionUser } from '../shared/models/SessionUser';
 import { ConfigService } from '../services/config.service';
 import { AlertService } from './alert.service';
 

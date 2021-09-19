@@ -1,0 +1,27 @@
+<div class="Sidebar col-12 col-lg-3 col-xl-2">
+    <div class="Branding clearfix">
+        <button class="Hamburger float-left d-md-block d-lg-none" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        MENU
+      </button>
+        <div class="Logo float-left">
+            BET Software Shop
+        </div>
+
+    </div>
+    <nav class="Nav navbar navbar-expand-lg clearfix">
+        <div class="collapse navbar-collapse" id="nav">
+
+            <div class="nav flex-column w-100">
+               
+                <a [routerLinkActive]="['active']" [routerLink]="['/products']" class="nav-item nav-link" href="#" >Browse Products</a>
+                <a [routerLinkActive]="['active']" [routerLink]="['/my-orders']" *ngIf="isLoggedIn" class="nav-item nav-link" href="#" >Orders</a>
+
+                <div class="dropdown-divider"></div>
+
+                <a [routerLinkActive]="['active']" [routerLink]="['/login']" *ngIf="!isLoggedIn" class="nav-item nav-link" href="javascript:void();">Login</a>
+                <a [routerLinkActive]="['active']" class="nav-item nav-link" *ngIf="isLoggedIn" (click)="LogOutIfConfirmed()" href="javascript:void();">Logout</a>
+
+            </div>
+        </div>
+    </nav>
+</div>

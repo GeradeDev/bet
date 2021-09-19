@@ -1,0 +1,29 @@
+<div class="main">
+    <div class="Page-header mb-3">
+      <div class="d-flex flex-column flex-md-row justify-content-md-between">
+        <div class="order-1 mt-1">
+          <h2>Browse Products</h2>
+        </div>
+      </div>
+    </div>
+
+    <ng-container  *ngFor="let prod of products">
+      <div class="card product">
+          <div class="report-icon">
+              <i class="fa fa-vmmc-booking report-type"></i>
+          </div>
+          <div class="card-body">
+              <img src="./../../../assets/images/default-product-image.png" alt="prod.Code">
+              <div class="prod-desc">
+                {{prod.description}}
+              </div>
+              <span class="prod-price">R {{prod.price}}</span>
+              <button class="btn btn-primary mb-3 pull-right" type="button">
+                  Add To Cart
+              </button>
+          </div>
+      </div>
+  </ng-container>
+
+</div>
+  

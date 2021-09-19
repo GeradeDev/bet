@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { SessionUser } from '../shared/models/SessionUser';
 import { Exception } from '../shared/Exception';
-import { EROFS } from 'constants';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
@@ -26,19 +25,6 @@ export class SessionService {
       return null;
     }
 
-    getSessionServiceProviderID(): string {
-      const sessionUser = this.getSessionUser();
-      if (sessionUser !== null) {
-        return sessionUser.serviceProviderID?.toString();
-      }
-      return '';
-    }
-
-    getSessionRole():string {
-      const sessionUser = this.getSessionUser();
-      return sessionUser?.roles?.length > 0 ? sessionUser?.roles[0] : '';
-    }
-
     setSessionUser(sessionUser: SessionUser): void {
       localStorage.setItem(this.currentUser, JSON.stringify(sessionUser));
     }
@@ -50,9 +36,9 @@ export class SessionService {
       this.logoutListener.next(true);
         
       if (returnToUrl) {
-        this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.routerState.snapshot.url }});
+        this.router.navigate(['/products'], { queryParams: { returnUrl: this.router.routerState.snapshot.url }}).then(() => window.location.reload());
       } else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/products']).then(() => window.location.reload());
       }
     }
 
@@ -68,13 +54,13 @@ export class SessionService {
 
     getFullname(){
       const sessionUser = this.getSessionUser();
-      return sessionUser == null ? "" :  sessionUser.firstname + " " + sessionUser.surname;
+      return sessionUser == null ? "" :  sessionUser.username;
     }
 
     getLoggedInUserId(){
       const sessionUser = this.getSessionUser();
       if (sessionUser !== null) {
-        return sessionUser.userID;
+        return 0;
       }
       return 0;
     }

@@ -7,6 +7,10 @@ import { ServerService } from './server.service';
 import { SessionUser } from '../shared/models/SessionUser';
 import { SessionService } from './session.service';
 
+
+import { Register } from '../shared/models/register';
+import { Login } from '../shared/models/login';
+
 @Injectable()
 export class AuthenticationService {
     constructor(private server: ServerService, private session: SessionService) { }
@@ -16,24 +20,8 @@ export class AuthenticationService {
       return sessionUser !== null && sessionUser.sessionToken !== null && sessionUser.sessionToken !== '';
     }
 
-    login(username: string, pin: string) {
-        return this.server.post<SessionUser>('authenticate',
-          { username: username, pin: pin }).pipe(
-            map(response => {
-              
-              // login successful if there's a jwt token in the response
-              response.initialLogin = { roles:response.roles,
-                                        serviceProvider:response.serviceProvider,
-                                        serviceProviderID:response.serviceProviderID,
-                                        isInitialLogIn:true
-              }
-
-              
-              this.session.setSessionUser(response);
-              this.session.logoutListener.next(false);
-              return response.passwordChangeRequired;
-              // store user details and jwt token in local storage to keep user logged in between page refreshes
-          }));
+    login(userDetails: Login): Observable<SessionUser> {
+        return this.server.post<SessionUser>('Auth/login', userDetails);
     }
 
     logout() {
@@ -43,6 +31,10 @@ export class AuthenticationService {
 
     resetLogin(){
       this.session.resetLogin();
+    }
+
+    registerUser(registraion: Register): Observable<Response>{
+      return this.server.post<Response>('Auth/register', registraion);
     }
 }
 
@@ -81,7 +73,7 @@ export class LoginGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.authenticationService.isLoggedIn()) {
             // logged in so return true
-            this.router.navigate(['/']);
+            this.router.navigate(['/login']);
             return false;
         }
         return true;

@@ -1,0 +1,32 @@
+img {
+    width: 100%;
+}
+
+.report-icon{
+    text-align: center;
+    background-color: #F5F6F8;
+    font-size: 25px;
+}
+
+
+.card-body{
+    > .btn{
+        float: right;
+    }
+}
+
+.product{
+    width: 18rem;
+    margin-top: 20px;
+    margin-right: 75px;
+    display: inline-block;
+}
+
+.prod-desc{
+    padding-bottom: 10px;
+}
+
+.prod-price{
+    font-size: 25px;
+    font-weight: bold;
+}

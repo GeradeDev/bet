@@ -1,0 +1,85 @@
+// Sidebar component
+/*
+ * Sidebar container for branding and app navigation
+*/
+
+@import "../../../../styles.scss";
+
+.Sidebar {
+  background-color: $bg-gray;
+}
+
+@include media-breakpoint-up(lg) {
+  .Sidebar {
+      background-color: $bg-gray;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      overflow-x: hidden;
+      overflow-y: auto;
+      border-right: 1px solid $brand-gray;
+  }
+}
+
+
+p{
+  margin: 0 !important;
+}
+
+.reset-login{
+  height: 30px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
+}
+
+
+/*
+* Component sections:
+* 1. Branding (Hamburger + Logo)
+* 2. Nav (Primary navigation)
+*/
+
+// 1. Branding
+.Branding {
+  padding: 32px;
+}
+
+.Hamburger {
+  height: 64px;
+  width: 100px;
+  background-color: #fff;
+}
+
+.Logo {
+  font-size: 24px;
+  width: 200px;
+}
+
+
+
+
+// 2. Nav
+$nav-link-color: #9B9B9B;
+
+.Nav {
+  padding: 0 32px;
+}
+
+.nav-link {
+  color: $nav-link-color;
+  padding: 8px 0;
+
+  &.active {
+      color: $brand-primary;
+  }
+}
+
+.dropdown-divider {
+  border-color: $brand-gray;
+}
