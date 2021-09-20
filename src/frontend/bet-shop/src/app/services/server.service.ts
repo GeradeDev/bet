@@ -12,7 +12,10 @@ export class ServerService {
     private serviceUrl = this.config.getConfiguration().BASE_API_URL;
 
     post<T>(apiPath: string, body: object, endpointUrl?:string, options?: object): Observable<T> {
-      return this.http.post<T>((endpointUrl !== undefined ? endpointUrl: this.serviceUrl) + apiPath, body,options);
+      const headers = new HttpHeaders();
+      headers.set('Access-Control-Allow-Origin', '*');
+
+      return this.http.post<T>((endpointUrl !== undefined ? endpointUrl: this.serviceUrl) + apiPath, body, { headers: headers} );
     }
 
     get<T>(apiPath: string, endpointUrl?:string): Observable<T> {
