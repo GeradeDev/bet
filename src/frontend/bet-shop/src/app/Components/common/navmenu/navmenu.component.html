@@ -13,8 +13,12 @@
 
             <div class="nav flex-column w-100">
                
+                <div>
+                    <p class="view-cart" [routerLinkActive]="['active']" [routerLink]="['/checkout']"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Cart <span class="cart-items-total">({{currentCart.items.length}}) Items</span></p>
+                </div>
+                <div class="dropdown-divider"></div>
+
                 <a [routerLinkActive]="['active']" [routerLink]="['/products']" class="nav-item nav-link" href="#" >Browse Products</a>
-                <a [routerLinkActive]="['active']" [routerLink]="['/my-orders']" *ngIf="isLoggedIn" class="nav-item nav-link" href="#" >Orders</a>
 
                 <div class="dropdown-divider"></div>
 

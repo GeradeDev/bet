@@ -1,5 +1,6 @@
 using BestShop.Api.Authentication;
 using BestShop.Api.DAL;
+using BetShop.Common.Mailer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -73,6 +74,7 @@ namespace BestShop.Api
             });
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IMailSender, MailSender>();
             services.AddCors();
             services.AddMvc((options) => { options.EnableEndpointRouting = false; });
             services.AddControllers().AddNewtonsoftJson();
@@ -96,12 +98,11 @@ namespace BestShop.Api
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseCors(builder => builder.WithOrigins("*")
                                           .WithMethods("*")
                                           .WithHeaders("*"));
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

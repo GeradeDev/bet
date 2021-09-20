@@ -16,13 +16,13 @@ namespace BestShop.Api.Models
 
         [JsonProperty]
         [Required]
-        public Guid UserId { get; private set; }
+        public Guid UserId { get; set; }
         [JsonProperty]
         [Required]
-        public string OrderNo { get; private set; }
+        public string OrderNo { get; set; }
         [JsonProperty]
         [Required]
-        public decimal OrderTotal { get; private set; }
+        public decimal OrderTotal { get; set; }
 
     }
 }

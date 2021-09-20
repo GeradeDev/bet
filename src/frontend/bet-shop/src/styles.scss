@@ -5,6 +5,8 @@ $bg-gray: #F5F6F8;
 $theme-colors: ( "primary": $brand-primary, "danger": #ff4136);
 // Include all of Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap";
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
 // Global layout
 .App {
     height: 100vh;

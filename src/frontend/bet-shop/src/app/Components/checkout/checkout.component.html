@@ -1,0 +1,52 @@
+<div class="main">
+    <div class="Page-header mb-3">
+      <div class="d-flex flex-column flex-md-row justify-content-md-between">
+        <div class="order-1 mt-1">
+          <h2>Checkout</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive table-hover">
+        <table class="table table-bordered">
+          <thead class="checkout-header">
+            <tr>
+              <th style="width: 10%" class="text-left">Code</th>
+              <th style="width: 30%" class="text-left">Name</th>
+              <th style="width: 15%" class="text-left">Quantity</th>
+              <th style="width: 15%" class="text-left">Price</th>
+              <th style="width: 15%" class="text-left">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="Table-row grow" *ngFor="let cartItem of currentCart.items">
+              <td class="Table-link">{{cartItem.code}}</td>
+              <td>{{cartItem.name}}</td>
+              <td>{{cartItem.quantity}}</td>
+              <td>{{cartItem.price}}</td>
+              <td>{{(cartItem.price * cartItem.quantity) | number : '1.2-2'}}</td>
+            </tr>
+            <tr class="Table-row grow">
+              <td colspan="4"></td>
+              <td colspan="5"><b>{{currentCart.cartTotal | number : '1.2-2'}}</b></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="text-center" [hidden]="!Loading">
+          <i class="fa fa-spinner fa-spin loading" ></i>
+          <p class="text-center">Please wait...</p>
+        </div>
+    </div>
+
+    <footer class="Footer">
+      <div class="col-12">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="order-1"></div>
+          <div class="order-2">
+            <button class="btn btn-primary" [disabled]="(!IsLoggedIn || Loading)" (click)="CheckOut()">Checkout</button>
+          </div>
+        </div>
+      </div>
+  </footer>
+</div>

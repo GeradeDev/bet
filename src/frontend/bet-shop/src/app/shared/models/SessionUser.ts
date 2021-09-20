@@ -3,4 +3,5 @@ export class SessionUser {
     username: string;
     email: string;
     expiration:string;
+    userId:string;
 }

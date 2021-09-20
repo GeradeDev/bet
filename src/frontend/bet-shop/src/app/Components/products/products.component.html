@@ -7,7 +7,26 @@
       </div>
     </div>
 
-    <ng-container  *ngFor="let prod of products">
+    <nav aria-label="Page navigation example">
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="text-center" [hidden]="!Loading">
+      <i class="fa fa-spinner fa-spin loading" ></i>
+      <p class="text-center">Loading...</p>
+   </div>
+    
+    <ng-container  *ngFor="let prod of pagedItems">
       <div class="card product">
           <div class="report-icon">
               <i class="fa fa-vmmc-booking report-type"></i>
@@ -18,12 +37,25 @@
                 {{prod.description}}
               </div>
               <span class="prod-price">R {{prod.price}}</span>
-              <button class="btn btn-primary mb-3 pull-right" type="button">
+              <div>
+                <select class="quantity-select" (change)="setSelectedQuantity($event.target.value, prod.id)">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                </select>
+                <button class="btn btn-primary mb-3 pull-right" (click)="addProductToCart(prod)" type="button">
                   Add To Cart
               </button>
+              </div>
           </div>
       </div>
-  </ng-container>
+    </ng-container>
 
 </div>
   

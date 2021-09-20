@@ -16,12 +16,12 @@ namespace BestShop.Api.Models
 
         [JsonProperty]
         [Required]
-        public Guid OrderId { get; private set; }
+        public Guid OrderId { get; set; }
         [Required]
-        public Guid ProductId { get; private set; }
+        public Guid ProductId { get; set; }
         [Required]
-        public int Quantity { get; private set; }
+        public int Quantity { get; set; }
         [Required]
-        public decimal LineTotal { get; private set; }
+        public decimal LineTotal { get; set; }
     }
 }

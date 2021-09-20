@@ -19,7 +19,7 @@ namespace BestShop.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
@@ -44,6 +44,8 @@ namespace BestShop.Api.Controllers
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
+                    new Claim(ClaimTypes.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
@@ -66,7 +68,8 @@ namespace BestShop.Api.Controllers
                 {
                     sessionToken = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo,
-                    username = user.UserName
+                    username = user.UserName,
+                    UserId = user.Id
                 });
             }
 

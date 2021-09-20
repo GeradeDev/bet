@@ -11,7 +11,7 @@ namespace BestShop.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseController
     {
         private IUnitOfWork _unitOfWork { get; set; }
         GenericRepository<Product> _prodsRepo { get; set; }
@@ -24,7 +24,7 @@ namespace BestShop.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> TestController()
+        public IActionResult GetProducts()
         {
             try
             {

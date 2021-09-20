@@ -5,6 +5,10 @@ import { environment } from '../../../../environments/environment';
 import { ServerService } from '../../../services/server.service';
 import { SessionService } from '../../../services/session.service';
 import { AlertService } from '../../../services/alert.service';
+import { CartService } from '../../../services/cart.service';
+
+
+import { ShoppingCart } from '../../../shared/models/shoppingtcart'
 
 @Component({
     selector: 'nav-menu',
@@ -13,11 +17,16 @@ import { AlertService } from '../../../services/alert.service';
 })
 
 export class NavMenuComponent {
-  public isLoggedIn = false;
 
-  constructor(private authenticationService: AuthenticationService, private sessionService: SessionService, private router: Router) {
+  public isLoggedIn = false;
+  currentCart:ShoppingCart;
+
+  constructor(private authenticationService: AuthenticationService, private sessionService: SessionService, private router: Router, private cartService: CartService) {
     this.isLoggedIn = this.authenticationService.isLoggedIn();
-    console.log(this.sessionService.getSessionUser());
+
+    this.cartService.loggedInUserCart.subscribe((res: ShoppingCart) => {  
+      this.currentCart = res;
+    });
   }
   
   public LogOutIfConfirmed(): void {

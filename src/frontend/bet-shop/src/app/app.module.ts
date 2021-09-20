@@ -10,6 +10,9 @@ import { ServerService } from './services/server.service';
 import { SessionService } from './services/session.service';
 import { ConfigService } from './services/config.service';
 import { ProductsService } from './services/products.service';
+import { CartService } from './services/cart.service';
+import { ServiceCallInterceptor } from './services/service-call-interceptor';
+import { PagerService } from './services/pager.service';
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +22,7 @@ import { LoginComponent } from './Components/Login/login.component'
 import { AlertComponent } from './shared/alert/alert.component';
 import { RegistrationComponent } from './Components/registration/registration.component';
 import { ProductsComponent } from './Components/products/products.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 
 export function init_app(configService: ConfigService) {
   // Load Config service before loading other components / services
@@ -34,6 +38,7 @@ export function init_app(configService: ConfigService) {
     AlertComponent,
     RegistrationComponent,
     ProductsComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,13 @@ export function init_app(configService: ConfigService) {
     ServerService,
     SessionService,
     ProductsService,
+    CartService,
+    [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: ServiceCallInterceptor,
+      multi: true,
+    }],
+    PagerService,
   ],
   bootstrap: [AppComponent]
 })
