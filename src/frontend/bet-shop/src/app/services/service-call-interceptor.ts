@@ -80,7 +80,6 @@ export class ServiceCallInterceptor implements HttpInterceptor {
       }
     } */
     , (err) => {
-      debugger;
       if (err instanceof HttpErrorResponse && typeof err.error !== 'string') {
         if (err.status === 404) {
           this.alertService.error('Error 404: Requested service not found');
